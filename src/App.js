@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [car, setCar]=useState({
+                          year:2024,
+                          make:"Ford",
+                          model:"Mustang"
+  })
+
+  function handleYear(e){
+    // ouvrir la colonne et changer la date
+    setCar(car=>({...car,year:e.target.value}))
+  }
+  function handleMake(e){
+    // ouvrir la colonne et changer make
+    setCar(car=>({...car,make:e.target.value}))
+  }
+  function handleModel(e){
+    // ouvrir la colonne et changer model
+    setCar(c=>({...c,model:e.target.value}))
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>Your favorite car is: {car.year} {car.make} {car.model}</p>
+     
+      <input type="number" value={car.year} onChange={handleYear}/>
+      <input type="text" value={car.make} onChange={handleMake}/>
+      <input type="text" value={car.model} onChange={handleModel}/>
     </div>
   );
 }
